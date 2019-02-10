@@ -6,7 +6,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: ["Public", "Private - Non Profit", "Private - Profit"],
         datasets: [{
-            label: 'Default Rates',
+            label:'Default Rates',
             data:  [9.82,10.91,15.24],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -22,12 +22,17 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
+        title:{
+            display: true,
+            text: 'Student loan default rates by college type (%)',
+            fontSize: 18
         }
+        // scales: {
+        //     yAxes: [{
+        //         ticks: {
+        //             beginAtZero:true
+        //         }
+        //     }]
+        // }
     }
 });
