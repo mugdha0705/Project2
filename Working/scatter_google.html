@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.0/d3.js"></script>
@@ -11,8 +12,9 @@
         var counter = 1;
         var holdData = [["Drate", "Denom"]];
 
-        d3.csv("College_Scatter.csv", function(data, error){
-          
+        console.log("Before D3");
+
+        d3.csv("CollegeScatter.csv", function(data, error){
           data.DefRate = +data.DefRate
           data.NetPrice = +data.NetPrice
           
@@ -42,7 +44,7 @@
           var dataTable = google.visualization.arrayToDataTable(data)
 
           var options = {
-          title: 'Loans per Institution by Default Rate',
+          title: 'Loan Default Rate per Net Price of College',
           hAxis: {title: 'Net Cost of College', minValue: 0, maxValue: 60000, viewWindow:{max: 60000}},
           vAxis: {title: 'Default Rate', minValue: 0, maxValue: 70},
           legend: 'none',
