@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.0/d3.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var counter = 1;
+        var holdData = [["Drate", "Denom"]];
+
+        console.log("Before D3");
+
+        d3.csv("CollegeScatter.csv", function(data, error){
+          data.DefRate = +data.DefRate
+          data.NetPrice = +data.NetPrice
+          
+
+          holdData[counter] = [data.NetPrice, data.DefRate];
+          
+          //console.log(data);
+          //console.log(holdData[counter]);
+          
+
+
+        //Put in Number of Last Row in Excel here.
+          counter++;
+          if (counter === 5210){
+            createChart(holdData)
+          }
+    
+          
+        })
+
+      
+      }
+        function createChart (data){
+          console.log(data)
+
+          var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+          var dataTable = google.visualization.arrayToDataTable(data)
+
+          var options = {
+          title: 'Loan Default Rate per Net Price of College',
+          hAxis: {title: 'Net Cost of College', minValue: 0, maxValue: 60000, viewWindow:{max: 60000}},
+          vAxis: {title: 'Default Rate', minValue: 0, maxValue: 70},
+          legend: 'none',
+          trendlines: { 0: {color: 'red'} } 
+        };
+
+          chart.draw(dataTable, options);
+
+      };
+
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 1300px; height: 700px;"></div>
+  </body>
+</html>
